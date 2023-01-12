@@ -14,15 +14,8 @@ class ViewController: UIViewController {
         return header
     }()
     
-    private let notchView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor(named: "BlackColor")
-        return view
-    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupView()
         addViews()
         
@@ -35,14 +28,21 @@ class ViewController: UIViewController {
     private func addViews(){
         // measure size
         headerView.frame = CGRect(
-            x:0,y:50,width: view.bounds.width,height: 50)
+            x:0,y:0,width: view.bounds.width,height: 100)
         
-        notchView.frame = CGRect(
-            x:0,y:0,width: view.bounds.width,height: 50)
+        // add actions
+        headerView.setSearchOnClick({()->() in
+            self.navigateToSearch()
+        })
         
         // add views
         view.addSubview(headerView)
-        view.addSubview(notchView)
+    }
+    
+    private func navigateToSearch(){
+        let viewController = UINavigationController(rootViewController:SearchViewController())
+        viewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
 }
