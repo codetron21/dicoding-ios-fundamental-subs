@@ -9,21 +9,66 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
+    private let photoView:UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        return image
+    }()
+    
+    private let nameLabel:UILabel = {
+       let label = UILabel()
+        label.text = "Adadua karunia putera"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.textColor = UIColor(named: "WhiteColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let emailLabel:UILabel = {
+        let label = UILabel()
+        label.text = "adasoraninda@gmail.com"
+        label.font = UIFont.italicSystemFont(ofSize: 17)
+        label.textColor = UIColor(named: "WhiteColor")
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let stackView:UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.alignment = .center
+        stack.spacing = 10
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        return stack
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        setupView()
+        applyConstraint()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    private func setupView(){
+        view.backgroundColor = UIColor(named: "Black2Color")
+        
+        view.addSubview(stackView)
+        
+        stackView.addArrangedSubview(photoView)
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(emailLabel)
     }
-    */
+    
+    private func applyConstraint(){
+        let safeGuide = view.safeAreaLayoutGuide
+        
+        let stackConstraint = [
+            stackView.topAnchor.constraint(equalTo: safeGuide.topAnchor ),
+            stackView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(stackConstraint)
+    }
 
 }

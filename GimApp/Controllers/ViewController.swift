@@ -31,16 +31,16 @@ class ViewController: UIViewController {
             x:0,y:0,width: view.bounds.width,height: 100)
         
         // add actions
-        headerView.setSearchOnClick({()->() in
-            self.navigateToSearch()
-        })
+        headerView.setOnAboutClickListener { ()->() in
+            self.navigateToAbout()
+        }
         
         // add views
         view.addSubview(headerView)
     }
     
-    private func navigateToSearch(){
-        let viewController = UINavigationController(rootViewController:SearchViewController())
+    private func navigateToAbout(){
+        let viewController = UINavigationController(rootViewController:AboutViewController())
         viewController.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         present(viewController, animated: true, completion: nil)
     }
