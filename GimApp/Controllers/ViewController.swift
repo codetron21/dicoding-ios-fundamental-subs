@@ -17,7 +17,10 @@ class ViewController: UIViewController {
     }()
     
     private let collectionView: UICollectionView = {
-        let collection = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionFlow = UICollectionViewFlowLayout()
+        collectionFlow.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
+        collectionFlow.scrollDirection = .vertical
+        let collection = UICollectionView(frame: .zero, collectionViewLayout:collectionFlow )
         collection.backgroundColor = UIColor(named: "Black2Color")
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection

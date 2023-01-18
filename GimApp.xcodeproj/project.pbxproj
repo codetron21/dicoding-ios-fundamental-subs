@@ -13,7 +13,8 @@
 		18238FA8297048AC0061854B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18238F9829702E070061854B /* Assets.xcassets */; };
 		18238FAC297058650061854B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238FAB297058650061854B /* AboutViewController.swift */; };
 		18238FAE297058750061854B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238FAD297058750061854B /* DetailViewController.swift */; };
-		2652B1EA2977A234007436F2 /* RawgServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652B1E92977A234007436F2 /* RawgServices.swift */; };
+		18EDD6202978284400893959 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD61F2978284400893959 /* NetworkService.swift */; };
+		18EDD6222978286000893959 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD6212978286000893959 /* GameModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +26,8 @@
 		18238F9D29702E070061854B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18238FAB297058650061854B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		18238FAD297058750061854B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		2652B1E92977A234007436F2 /* RawgServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawgServices.swift; sourceTree = "<group>"; };
+		18EDD61F2978284400893959 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		18EDD6212978286000893959 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,13 +60,10 @@
 		18238F8E29702E060061854B /* GimApp */ = {
 			isa = PBXGroup;
 			children = (
-				2652B1EB2977A8C9007436F2 /* Views */,
-				2652B1E82977A218007436F2 /* Services */,
+				18EDD61E2978282900893959 /* NetworkSource */,
+				18EDD61C29781B7800893959 /* App */,
+				18EDD61B29781B6A00893959 /* FileSystem */,
 				18238FA5297034A90061854B /* Controllers */,
-				18238F8F29702E060061854B /* AppDelegate.swift */,
-				18238F9129702E060061854B /* SceneDelegate.swift */,
-				18238F9829702E070061854B /* Assets.xcassets */,
-				18238F9D29702E070061854B /* Info.plist */,
 			);
 			path = GimApp;
 			sourceTree = "<group>";
@@ -79,19 +78,31 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		2652B1E82977A218007436F2 /* Services */ = {
+		18EDD61B29781B6A00893959 /* FileSystem */ = {
 			isa = PBXGroup;
 			children = (
-				2652B1E92977A234007436F2 /* RawgServices.swift */,
+				18238F9829702E070061854B /* Assets.xcassets */,
+				18238F9D29702E070061854B /* Info.plist */,
 			);
-			path = Services;
+			path = FileSystem;
 			sourceTree = "<group>";
 		};
-		2652B1EB2977A8C9007436F2 /* Views */ = {
+		18EDD61C29781B7800893959 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				18238F8F29702E060061854B /* AppDelegate.swift */,
+				18238F9129702E060061854B /* SceneDelegate.swift */,
 			);
-			path = Views;
+			path = App;
+			sourceTree = "<group>";
+		};
+		18EDD61E2978282900893959 /* NetworkSource */ = {
+			isa = PBXGroup;
+			children = (
+				18EDD61F2978284400893959 /* NetworkService.swift */,
+				18EDD6212978286000893959 /* GameModel.swift */,
+			);
+			path = NetworkSource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,9 +176,10 @@
 			files = (
 				18238FAC297058650061854B /* AboutViewController.swift in Sources */,
 				18238F9429702E060061854B /* ViewController.swift in Sources */,
-				2652B1EA2977A234007436F2 /* RawgServices.swift in Sources */,
 				18238F9029702E060061854B /* AppDelegate.swift in Sources */,
 				18238F9229702E060061854B /* SceneDelegate.swift in Sources */,
+				18EDD6202978284400893959 /* NetworkService.swift in Sources */,
+				18EDD6222978286000893959 /* GameModel.swift in Sources */,
 				18238FAE297058750061854B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -297,7 +309,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GimApp/Info.plist;
+				INFOPLIST_FILE = GimApp/FileSystem/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -323,7 +335,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = GimApp/Info.plist;
+				INFOPLIST_FILE = GimApp/FileSystem/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
