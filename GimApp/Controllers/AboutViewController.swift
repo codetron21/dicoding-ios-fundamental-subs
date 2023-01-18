@@ -54,8 +54,7 @@ class AboutViewController: UIViewController {
     }
     
     private func setupView(){
-        view.backgroundColor = UIColor(named: "Black2Color")
-        
+        view.backgroundColor = UIColor(named: "BlackColor")
         stackView.addArrangedSubview(photoView)
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(emailLabel)

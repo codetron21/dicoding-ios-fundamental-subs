@@ -13,6 +13,7 @@
 		18238FA8297048AC0061854B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18238F9829702E070061854B /* Assets.xcassets */; };
 		18238FAC297058650061854B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238FAB297058650061854B /* AboutViewController.swift */; };
 		18238FAE297058750061854B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238FAD297058750061854B /* DetailViewController.swift */; };
+		2652B1EA2977A234007436F2 /* RawgServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2652B1E92977A234007436F2 /* RawgServices.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		18238F9D29702E070061854B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18238FAB297058650061854B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		18238FAD297058750061854B /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		2652B1E92977A234007436F2 /* RawgServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawgServices.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,8 @@
 		18238F8E29702E060061854B /* GimApp */ = {
 			isa = PBXGroup;
 			children = (
+				2652B1EB2977A8C9007436F2 /* Views */,
+				2652B1E82977A218007436F2 /* Services */,
 				18238FA5297034A90061854B /* Controllers */,
 				18238F8F29702E060061854B /* AppDelegate.swift */,
 				18238F9129702E060061854B /* SceneDelegate.swift */,
@@ -73,6 +77,21 @@
 				18238FAD297058750061854B /* DetailViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		2652B1E82977A218007436F2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2652B1E92977A234007436F2 /* RawgServices.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		2652B1EB2977A8C9007436F2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +165,7 @@
 			files = (
 				18238FAC297058650061854B /* AboutViewController.swift in Sources */,
 				18238F9429702E060061854B /* ViewController.swift in Sources */,
+				2652B1EA2977A234007436F2 /* RawgServices.swift in Sources */,
 				18238F9029702E060061854B /* AppDelegate.swift in Sources */,
 				18238F9229702E060061854B /* SceneDelegate.swift in Sources */,
 				18238FAE297058750061854B /* DetailViewController.swift in Sources */,
