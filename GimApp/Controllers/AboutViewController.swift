@@ -9,8 +9,15 @@ import UIKit
 
 class AboutViewController: UIViewController {
 
-    private let photoView:UIImageView = {
+    private let photoView: UIImageView = {
         let image = UIImageView()
+        image.image = UIImage(named: "AdaPhoto")
+        image.contentMode = .scaleAspectFit
+        image.layer.borderColor = UIColor(named: "RedColor")?.cgColor
+        image.layer.borderWidth = 1
+        image.layer.cornerRadius = 70
+        image.layer.masksToBounds = false
+        image.clipsToBounds = true
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -20,16 +27,14 @@ class AboutViewController: UIViewController {
         label.text = "Adadua karunia putera"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor(named: "WhiteColor")
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let emailLabel:UILabel = {
         let label = UILabel()
         label.text = "adasoraninda@gmail.com"
-        label.font = UIFont.italicSystemFont(ofSize: 17)
+        label.font = UIFont.italicSystemFont(ofSize: 14)
         label.textColor = UIColor(named: "WhiteColor")
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -51,23 +56,29 @@ class AboutViewController: UIViewController {
     private func setupView(){
         view.backgroundColor = UIColor(named: "Black2Color")
         
-        view.addSubview(stackView)
-        
         stackView.addArrangedSubview(photoView)
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(emailLabel)
-    }
-    
-    private func applyConstraint(){
-        let safeGuide = view.safeAreaLayoutGuide
         
-        let stackConstraint = [
-            stackView.topAnchor.constraint(equalTo: safeGuide.topAnchor ),
-            stackView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor)
+        view.addSubview(stackView)
+        
+        // set up navigation bar
+        navigationItem.title = "About"
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "RedColor") ?? UIColor.red]
+        }
+    
+    private func applyConstraint(){        
+        let photoConstraint = [
+            photoView.heightAnchor.constraint(equalToConstant: 140),
+            photoView.widthAnchor.constraint(equalToConstant: 140)
         ]
         
+        let stackConstraint = [
+            stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ]
+        
+        NSLayoutConstraint.activate(photoConstraint)
         NSLayoutConstraint.activate(stackConstraint)
     }
 
