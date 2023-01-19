@@ -10,10 +10,10 @@ import Foundation
 struct Game{
     let id:Int
     let name:String
-    let rating:Int
-    let released:Date
+    let rating:Float
+    let released:String
     
-    init(id:Int,name: String, rating: Int, released: Date) {
+    init(id:Int,name: String, rating: Float, released: String) {
         self.id = id
         self.name = name
         self.rating = rating
@@ -46,8 +46,8 @@ struct GameResponses: Codable {
 struct GameResponse: Codable{
     let id:Int
     let name:String
-    let rating:Int
-    let released:Date
+    let rating:Float
+    let released:String
     
     enum CodingKeys: String, CodingKey{
         case id
@@ -61,13 +61,15 @@ struct GameResponse: Codable{
         
         id = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
-        rating = try container.decode(Int.self, forKey: .rating)
+        rating = try container.decode(Float.self, forKey: .rating)
         
         
         let dateString = try container.decode(String.self, forKey: .released)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        released = dateFormatter.date(from: dateString)!
+        let date = dateFormatter.date(from: dateString)!
+        released = dateFormatter.string(from: date)
+        print("Init: \(released)")
     }
 }
 

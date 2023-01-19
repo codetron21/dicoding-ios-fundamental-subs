@@ -16,14 +16,11 @@ class ViewController: UIViewController {
         return progress
     }()
     
-    private let collectionView: UICollectionView = {
-        let collectionFlow = UICollectionViewFlowLayout()
-        collectionFlow.sectionInset = UIEdgeInsets(top: 10, left: 20, bottom: 10, right: 20)
-        collectionFlow.scrollDirection = .vertical
-        let collection = UICollectionView(frame: .zero, collectionViewLayout:collectionFlow )
-        collection.backgroundColor = UIColor(named: "Black2Color")
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        return collection
+    private let tableView: UITableView = {
+        let table = UITableView()
+        table.backgroundColor = UIColor(named: "Black2Color")
+        table.translatesAutoresizingMaskIntoConstraints = false
+        return table
     }()
     
     private var games:[Game] = []
@@ -57,12 +54,14 @@ class ViewController: UIViewController {
         
         navigationItem.rightBarButtonItem = itemAbout
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(GameViewCell.self, forCellReuseIdentifier: cellId)
     }
     
     private func addViews() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
         view.addSubview(indicatorView)
     }
     
@@ -74,10 +73,10 @@ class ViewController: UIViewController {
         let safeGuide = view.safeAreaLayoutGuide
         
         let collectionConstraint = [
-            collectionView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor)
+            tableView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor)
         ]
         
         let indicatorConstraint = [
@@ -99,30 +98,34 @@ extension ViewController {
         let service = NetworkService()
         do {
             games = try await service.getGames()
-            collectionView.reloadData()
+            tableView.reloadData()
         } catch {
-            fatalError("Error: connection failed.")
+           print("ERROR: \(error)")
         }
         
     }
 }
 
-extension ViewController: UICollectionViewDelegate {
+extension ViewController: UITableViewDelegate {
     
 }
 
-extension ViewController: UICollectionViewDataSource {
+extension ViewController: UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         as! GameViewCell
-        
+        cell.game = games[indexPath.row]
         return cell
     }
+    
+        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+            return 120
+        }
     
 }
 
