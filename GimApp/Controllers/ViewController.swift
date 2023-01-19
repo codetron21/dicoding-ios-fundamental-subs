@@ -26,6 +26,10 @@ class ViewController: UIViewController {
         return collection
     }()
     
+    private var games:[Game] = []
+    
+    private let cellId = "game-cell-id"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -91,14 +95,14 @@ extension ViewController: UICollectionViewDelegate {
 extension ViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return games.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        return cell
     }
-    
     
 }
 
