@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 class NetworkService {
     let apiKey = "f23d88453d554389a4f5acf9f3a55b77"
     let baseUrl = "https://api.rawg.io/api/"
@@ -37,8 +35,26 @@ class NetworkService {
         return gameMapper(input: result.results)
     }
     
-    func getDetailGame(_ id:Int){
+    func getDetailGame(_ id:Int) async throws -> GameDetail{
+        let path = "games/\(id)"
         
+        var components = URLComponents(string: "\(baseUrl)\(path)")!
+        components.queryItems = [
+            URLQueryItem(name: "key", value: apiKey),
+        ]
+        
+        let request = URLRequest(url: components.url!)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            fatalError("Error: Can't fetching data.")
+        }
+        
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(GameDetailResponse.self, from: data)
+        
+        return gameMapper(input: result)
     }
 }
 
@@ -51,5 +67,13 @@ extension NetworkService {
                 id: result.id, name: result.name, rating: result.rating, released: result.released
             )
         }
+    }
+    
+    fileprivate func gameMapper(
+        input: GameDetailResponse
+    ) -> GameDetail{
+        return GameDetail(
+            id: input.id, name: input.name, rating: input.rating, released: input.released
+        )
     }
 }

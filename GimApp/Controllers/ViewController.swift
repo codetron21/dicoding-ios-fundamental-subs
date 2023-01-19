@@ -38,6 +38,11 @@ class ViewController: UIViewController {
         applyConstraint()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        Task { await getGames() }
+    }
+    
     private func setupView(){
         view.backgroundColor = UIColor(named: "BlackColor")
         
@@ -88,6 +93,20 @@ class ViewController: UIViewController {
     
 }
 
+extension ViewController {
+    
+    func getGames() async {
+        let service = NetworkService()
+        do {
+            games = try await service.getGames()
+            collectionView.reloadData()
+        } catch {
+            fatalError("Error: connection failed.")
+        }
+        
+    }
+}
+
 extension ViewController: UICollectionViewDelegate {
     
 }
@@ -98,9 +117,10 @@ extension ViewController: UICollectionViewDataSource {
         return games.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        as! GameViewCell
+        
         return cell
     }
     
