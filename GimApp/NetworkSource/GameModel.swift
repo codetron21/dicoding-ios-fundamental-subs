@@ -16,7 +16,7 @@ struct Game{
     let released:String
     let bacgroundImage: URL
     
-    init(id:Int,name: String, rating: Float, released: String,bacgroundImage: String) {
+    init(id:Int, name: String, rating: Float, released: String,bacgroundImage: String) {
         self.id = id
         self.name = name
         self.rating = rating
@@ -30,12 +30,16 @@ struct GameDetail {
     let name:String
     let rating:Int
     let released:Date
+    let bacgroundImage: URL
+    let description: String
     
-    init(id:Int,name: String, rating: Int, released: Date) {
+    init(id:Int,name: String, rating: Int, released: Date,backgroundImage:String,description:String) {
         self.id = id
         self.name = name
         self.rating = rating
         self.released = released
+        self.bacgroundImage = URL(string: backgroundImage)!
+        self.description = description
     }
 }
 
@@ -85,12 +89,16 @@ struct GameDetailResponse: Codable{
     let name:String
     let rating:Int
     let released:Date
+    let backgroundImage:String
+    let description:String
     
     enum CodingKeys: String, CodingKey{
         case id
         case name
         case rating
         case released
+        case backgroundImage = "background_image"
+        case description
     }
     
     init(from decoder: Decoder) throws {
@@ -99,6 +107,8 @@ struct GameDetailResponse: Codable{
         id = try container.decode(Int.self, forKey: .id)
         name = try container.decode(String.self, forKey: .name)
         rating = try container.decode(Int.self, forKey: .rating)
+        description = try container.decode(String.self, forKey: .description)
+        backgroundImage = try container.decode(String.self, forKey: .backgroundImage)
         
         let dateString = try container.decode(String.self, forKey: .released)
         let dateFormatter = DateFormatter()

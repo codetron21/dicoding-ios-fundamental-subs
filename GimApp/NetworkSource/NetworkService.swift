@@ -74,7 +74,7 @@ extension NetworkService {
         input: GameDetailResponse
     ) -> GameDetail{
         return GameDetail(
-            id: input.id, name: input.name, rating: input.rating, released: input.released
+            id: input.id, name: input.name, rating: input.rating, released: input.released,backgroundImage: input.backgroundImage, description: input.description
         )
     }
     
