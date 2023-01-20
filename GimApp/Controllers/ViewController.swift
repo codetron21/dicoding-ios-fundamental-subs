@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         let table = UITableView()
         table.backgroundColor = UIColor(named: "Black2Color")
         table.translatesAutoresizingMaskIntoConstraints = false
+        table.separatorStyle = .none
         return table
     }()
     
@@ -100,7 +101,7 @@ extension ViewController {
             games = try await service.getGames()
             tableView.reloadData()
         } catch {
-           print("ERROR: \(error)")
+            print("ERROR: \(error)")
         }
         
     }
@@ -123,9 +124,9 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
     
-        func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            return 120
-        }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
     
 }
 

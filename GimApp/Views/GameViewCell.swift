@@ -14,6 +14,9 @@ class GameViewCell: UITableViewCell {
             titleLabel.text = game?.name
             ratingLabel.text = String(game?.rating ?? 0)
             releasedLabel.text = game?.released
+            if let imageUrl = game?.bacgroundImage {
+                posterImage.load(url: imageUrl)
+            }
         }
     }
     
@@ -22,6 +25,7 @@ class GameViewCell: UITableViewCell {
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = UIColor(named: "RedColor")
         image.layer.cornerRadius = 4
+        image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = false
         image.clipsToBounds = true
         return image
@@ -66,7 +70,7 @@ class GameViewCell: UITableViewCell {
     }
     
     private func setupViews(){
-        backgroundColor = UIColor(named:"Black2Color")
+        backgroundColor = UIColor(named:"BlackColor")
     }
     
     private func addViews(){
@@ -85,7 +89,7 @@ class GameViewCell: UITableViewCell {
         ]
         
         let titleConstraints = [
-            titleLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 8),
+            titleLabel.leadingAnchor.constraint(equalTo: posterImage.trailingAnchor, constant: 15),
             titleLabel.trailingAnchor.constraint(lessThanOrEqualTo: trailingAnchor, constant: 0),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
         ]
@@ -98,7 +102,7 @@ class GameViewCell: UITableViewCell {
         
         let releasedConstraint = [
             releasedLabel.topAnchor.constraint(equalTo: posterImage.topAnchor),
-            releasedLabel.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -10)
+            releasedLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10)
         ]
         
         NSLayoutConstraint.activate(posterConstraint)

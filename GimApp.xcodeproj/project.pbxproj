@@ -16,6 +16,7 @@
 		18EDD6202978284400893959 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD61F2978284400893959 /* NetworkService.swift */; };
 		18EDD6222978286000893959 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD6212978286000893959 /* GameModel.swift */; };
 		269672802978E43400A33087 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696727F2978E43400A33087 /* GameViewCell.swift */; };
+		269DEF50297A3CE600E5270A /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269DEF4F297A3CE600E5270A /* ViewExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		18EDD61F2978284400893959 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		18EDD6212978286000893959 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		2696727F2978E43400A33087 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
+		269DEF4F297A3CE600E5270A /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				2696727F2978E43400A33087 /* GameViewCell.swift */,
+				269DEF4F297A3CE600E5270A /* ViewExtensions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				18238F9429702E060061854B /* ViewController.swift in Sources */,
 				269672802978E43400A33087 /* GameViewCell.swift in Sources */,
 				18238F9029702E060061854B /* AppDelegate.swift in Sources */,
+				269DEF50297A3CE600E5270A /* ViewExtensions.swift in Sources */,
 				18238F9229702E060061854B /* SceneDelegate.swift in Sources */,
 				18EDD6202978284400893959 /* NetworkService.swift in Sources */,
 				18EDD6222978286000893959 /* GameModel.swift in Sources */,
