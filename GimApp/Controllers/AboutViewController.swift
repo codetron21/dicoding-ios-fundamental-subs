@@ -22,7 +22,7 @@ class AboutViewController: UIViewController {
         return image
     }()
     
-    private let nameLabel:UILabel = {
+    private let nameLabel: UILabel = {
        let label = UILabel()
         label.text = "Adadua karunia putera"
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -30,7 +30,7 @@ class AboutViewController: UIViewController {
         return label
     }()
     
-    private let emailLabel:UILabel = {
+    private let emailLabel: UILabel = {
         let label = UILabel()
         label.text = "adasoraninda@gmail.com"
         label.font = UIFont.italicSystemFont(ofSize: 14)
@@ -38,7 +38,7 @@ class AboutViewController: UIViewController {
         return label
     }()
     
-    private let stackView:UIStackView = {
+    private let stackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.alignment = .center

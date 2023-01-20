@@ -90,7 +90,7 @@ class ViewController: UIViewController {
 
 extension ViewController {
     
-    func getGames() async {
+    private func getGames() async {
         let service = NetworkService()
         do {
             games = try await service.getGames()
@@ -104,7 +104,7 @@ extension ViewController {
 
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        navigateToDetail(id: games[indexPath.count].id)
+        navigateToDetail(id: games[indexPath.row].id)
     }
 }
 

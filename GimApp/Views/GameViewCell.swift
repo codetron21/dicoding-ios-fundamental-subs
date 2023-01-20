@@ -14,9 +14,6 @@ class GameViewCell: UITableViewCell {
             titleLabel.text = game?.name
             ratingLabel.text = String(game?.rating ?? 0)
             releasedLabel.text = game?.released
-            if let imageUrl = game?.bacgroundImage {
-                posterImage.load(url: imageUrl)
-            }
         }
     }
     
