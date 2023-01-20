@@ -5,7 +5,7 @@
 //  Created by Apple on 18/01/23.
 //
 
-import Foundation
+import UIKit
 
 class NetworkService {
     let apiKey = "f23d88453d554389a4f5acf9f3a55b77"
@@ -55,6 +55,15 @@ class NetworkService {
         let result = try decoder.decode(GameDetailResponse.self, from: data)
         
         return gameMapper(input: result)
+    }
+    
+    func dowloadImage(url: URL, completion: @escaping (UIImage?) -> Void)  {
+        let downloadTask: URLSessionDataTask = URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            completion(UIImage(data:data))
+        }
+        
+        downloadTask.resume()
     }
 }
 

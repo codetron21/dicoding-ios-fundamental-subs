@@ -5,7 +5,6 @@
 //  Created by Apple on 18/01/23.
 //
 
-import Foundation
 import UIKit
 
 // Domain
@@ -15,6 +14,8 @@ struct Game{
     let rating:Float
     let released:String
     let bacgroundImage: URL
+    
+    var image:UIImage? = nil
     
     init(id:Int, name: String, rating: Float, released: String,bacgroundImage: String) {
         self.id = id
@@ -32,6 +33,8 @@ struct GameDetail {
     let released:String
     let bacgroundImage: URL
     let description: String
+    
+    var image:UIImage? = nil
     
     init(id:Int,name: String, rating: Float, released: String,backgroundImage:String,description:String) {
         self.id = id

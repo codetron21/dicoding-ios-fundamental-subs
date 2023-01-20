@@ -9,13 +9,6 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private let indicatorView: UIActivityIndicatorView = {
-        let progress = UIActivityIndicatorView()
-        progress.color = UIColor.white
-        progress.translatesAutoresizingMaskIntoConstraints = false
-        return progress
-    }()
-    
     private let tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = UIColor(named: "Black2Color")
@@ -23,6 +16,15 @@ class ViewController: UIViewController {
         table.separatorStyle = .none
         return table
     }()
+    
+    private let loadingView: LoadingIndicatorView = {
+        let loading = LoadingIndicatorView()
+        loading.isHidden = true
+        loading.translatesAutoresizingMaskIntoConstraints = false
+        return loading
+    }()
+    
+    private  let service = NetworkService()
     
     private var games:[Game] = []
     
@@ -38,6 +40,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if !games.isEmpty { return }
         Task { await getGames() }
     }
     
@@ -63,7 +66,7 @@ class ViewController: UIViewController {
     
     private func addViews() {
         view.addSubview(tableView)
-        view.addSubview(indicatorView)
+        view.addSubview(loadingView)
     }
     
     private func applyConstraint(){
@@ -76,29 +79,15 @@ class ViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor)
         ]
         
-        let indicatorConstraint = [
-            indicatorView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
-            indicatorView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor),
-            indicatorView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor),
-            indicatorView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor),
+        let loadingConstraint = [
+            loadingView.heightAnchor.constraint(equalToConstant: 50),
+            loadingView.widthAnchor.constraint(equalToConstant: 50),
+            loadingView.centerXAnchor.constraint(equalTo: safeGuide.centerXAnchor),
+            loadingView.centerYAnchor.constraint(equalTo: safeGuide.centerYAnchor)
         ]
         
-        NSLayoutConstraint.activate(indicatorConstraint)
+        NSLayoutConstraint.activate(loadingConstraint)
         NSLayoutConstraint.activate(collectionConstraint)
-    }
-}
-
-extension ViewController {
-    
-    private func getGames() async {
-        let service = NetworkService()
-        do {
-            games = try await service.getGames()
-            tableView.reloadData()
-        } catch {
-            print("ERROR: \(error)")
-        }
-        
     }
 }
 
@@ -121,7 +110,18 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         as! GameViewCell
-        cell.game = games[indexPath.row]
+        let game =  games[indexPath.row]
+        
+        cell.game = game
+        
+        if cell.game?.image == nil {
+            service.dowloadImage(url: game.bacgroundImage){image in
+                DispatchQueue.main.async {
+                    cell.game?.image = image
+                }
+            }
+        }
+        
         return cell
     }
     
@@ -132,12 +132,29 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController {
+    
+    private func getGames() async {
+        loadingView.isHidden = false
+        defer{ loadingView.isHidden = true }
+        
+        do {
+            games = try await service.getGames()
+            tableView.reloadData()
+        } catch {
+            print("ERROR: \(error)")
+        }
+    }
+}
+
+// Action listener
+extension ViewController {
     @objc func actionAboutTap(){
         print("DEBUG: about")
         navigateToAbout()
     }
 }
 
+// Navigation
 extension ViewController {
     private func navigateToAbout(){
         navigationController?.pushViewController(AboutViewController(), animated: true)

@@ -14,6 +14,7 @@ class GameViewCell: UITableViewCell {
             titleLabel.text = game?.name
             ratingLabel.text = String(game?.rating ?? 0)
             releasedLabel.text = game?.released
+            posterImage.image = game?.image
         }
     }
     
@@ -33,6 +34,8 @@ class GameViewCell: UITableViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.white
         label.numberOfLines = 1
+        label.lineBreakMode = .byWordWrapping
+        label.sizeToFit()
         return label
     }()
     
