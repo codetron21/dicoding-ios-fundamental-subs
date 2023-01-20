@@ -77,7 +77,7 @@ struct GameResponse: Codable{
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let date = dateFormatter.date(from: dateString)!
         released = dateFormatter.string(from: date)
-        }
+    }
 }
 
 struct GameDetailResponse: Codable{

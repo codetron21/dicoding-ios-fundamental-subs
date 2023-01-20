@@ -66,10 +66,6 @@ class ViewController: UIViewController {
         view.addSubview(indicatorView)
     }
     
-    private func navigateToAbout(){
-        navigationController?.pushViewController(AboutViewController(), animated: true)
-    }
-    
     private func applyConstraint(){
         let safeGuide = view.safeAreaLayoutGuide
         
@@ -90,7 +86,6 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(indicatorConstraint)
         NSLayoutConstraint.activate(collectionConstraint)
     }
-    
 }
 
 extension ViewController {
@@ -108,10 +103,16 @@ extension ViewController {
 }
 
 extension ViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        navigateToDetail(id: games[indexPath.count].id)
+    }
 }
 
 extension ViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return games.count
@@ -131,11 +132,21 @@ extension ViewController: UITableViewDataSource {
 }
 
 extension ViewController {
-    
     @objc func actionAboutTap(){
-        print("debug: about")
+        print("DEBUG: about")
         navigateToAbout()
     }
+}
+
+extension ViewController {
+    private func navigateToAbout(){
+        navigationController?.pushViewController(AboutViewController(), animated: true)
+    }
     
+    private func navigateToDetail(id:Int){
+        let vc = DetailViewController()
+        vc.gameId = id
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
