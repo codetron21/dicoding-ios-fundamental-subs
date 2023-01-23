@@ -8,7 +8,7 @@
 import UIKit
 
 class AboutViewController: UIViewController {
-
+    
     private let photoView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "AdaPhoto")
@@ -23,7 +23,7 @@ class AboutViewController: UIViewController {
     }()
     
     private let nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Adadua karunia putera"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = UIColor(named: "WhiteColor")
@@ -55,16 +55,15 @@ class AboutViewController: UIViewController {
     
     private func setupView(){
         view.backgroundColor = UIColor(named: "BlackColor")
+        
         stackView.addArrangedSubview(photoView)
         stackView.addArrangedSubview(nameLabel)
         stackView.addArrangedSubview(emailLabel)
         
         view.addSubview(stackView)
-        
-        // set up navigation bar
+
         navigationItem.title = "About"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "RedColor") ?? UIColor.red]
-        }
+    }
     
     private func applyConstraint(){        
         let photoConstraint = [
@@ -80,5 +79,5 @@ class AboutViewController: UIViewController {
         NSLayoutConstraint.activate(photoConstraint)
         NSLayoutConstraint.activate(stackConstraint)
     }
-
+    
 }

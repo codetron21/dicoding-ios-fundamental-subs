@@ -99,16 +99,15 @@ class DetailViewController: UIViewController {
         contentView.addSubview(descriptionLabel)
         
         scrollView.addSubview(contentView)
+        
         view.addSubview(scrollView)
         view.addSubview(loadingView)
     }
     
     private func setupView(){
         view.backgroundColor = UIColor(named: "BlackColor")
-        // set up navigation bar
+
         navigationItem.title = "Detail Gim"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "RedColor") ?? UIColor.red]
-        
     }
     
     private func applyConstraint() {
@@ -178,7 +177,7 @@ class DetailViewController: UIViewController {
         posterImage.image = game.image
         releasedLabel.text = game.released
         titleLabel.text = game.name
-        ratingLabel.text  = String(game.rating)
+        ratingLabel.addStarFill(String(game.rating), pointSize: 17)
         descriptionLabel.text = game.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
     
@@ -189,7 +188,7 @@ extension DetailViewController {
     private func getDetailGame(_ id:Int) async {
         loadingView.isHidden = false
         defer{ loadingView.isHidden = true }
-        let service = NetworkService()
+        let service = NetworkService.shared
         do {
             var result = try await service.getDetailGame(id)
             service.dowloadImage(url: result.bacgroundImage){image in

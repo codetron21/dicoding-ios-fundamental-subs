@@ -9,10 +9,12 @@ import UIKit
 
 class GameViewCell: UITableViewCell {
     
+    static let cellId = "game-cell-id"
+    
     var game: Game?{
         didSet {
             titleLabel.text = game?.name
-            ratingLabel.text = String(game?.rating ?? 0)
+            ratingLabel.addStarFill(String(game?.rating ?? 0), pointSize: 14)
             releasedLabel.text = game?.released
             posterImage.image = game?.image
         }
@@ -33,6 +35,7 @@ class GameViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = UIColor.white
+        label.font = UIFont.boldSystemFont(ofSize: 17)
         label.numberOfLines = 1
         label.lineBreakMode = .byWordWrapping
         label.sizeToFit()
@@ -55,6 +58,8 @@ class GameViewCell: UITableViewCell {
         label.textColor = UIColor.white
         label.numberOfLines = 1
         label.font = UIFont.systemFont(ofSize: 14)
+        
+        
         return label
     }()
     

@@ -8,8 +8,24 @@
 import UIKit
 
 class NetworkService {
-    let apiKey = "f23d88453d554389a4f5acf9f3a55b77"
+    private let apiKey: String = {
+        guard let filePath = Bundle.main.path(forResource: "Info", ofType: "plist") else {
+            fatalError("Couldn't find file 'Info.plist'.")
+        }
+        
+        let plist = NSDictionary(contentsOfFile: filePath)
+        guard let value = plist?.object(forKey: "API_KEY") as? String else {
+            fatalError("Couldn't find key 'API_KEY' in 'Info.plist'.")
+        }
+        
+        return value
+    }()
+    
     let baseUrl = "https://api.rawg.io/api/"
+    
+    static let shared = NetworkService()
+    
+    private init(){}
     
     func getGames() async throws -> [Game]{
         let path = "games"
@@ -68,7 +84,8 @@ class NetworkService {
 }
 
 extension NetworkService {
-    fileprivate func gameMapper(
+    
+    private func gameMapper(
         input: [GameResponse]
     ) -> [Game]{
         return input.map{ result in
@@ -79,7 +96,7 @@ extension NetworkService {
         }
     }
     
-    fileprivate func gameMapper(
+    private func gameMapper(
         input: GameDetailResponse
     ) -> GameDetail{
         return GameDetail(

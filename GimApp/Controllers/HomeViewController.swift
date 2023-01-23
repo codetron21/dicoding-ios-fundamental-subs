@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -24,12 +24,10 @@ class ViewController: UIViewController {
         return loading
     }()
     
-    private  let service = NetworkService()
+    private  let service = NetworkService.shared
     
     private var games:[Game] = []
-    
-    private let cellId = "game-cell-id"
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,21 +45,22 @@ class ViewController: UIViewController {
     private func setupView(){
         view.backgroundColor = UIColor(named: "BlackColor")
         
-        // set up navigation bar
-        navigationItem.title = "Gim App"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(named: "RedColor") ?? UIColor.red]
-        
         let itemAbout = UIBarButtonItem()
         itemAbout.image = UIImage(systemName: "person.circle")
         itemAbout.target = self
         itemAbout.action = #selector(actionAboutTap)
         
+        navigationItem.title = "Gim App"
+        navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedString.Key.foregroundColor: UIColor(named: "RedColor") ?? UIColor.red,
+            NSAttributedString.Key.font:UIFont.boldSystemFont(ofSize: 22)
+        ]
+        
         navigationItem.rightBarButtonItem = itemAbout
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        tableView.register(GameViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(GameViewCell.self, forCellReuseIdentifier: GameViewCell.cellId)
     }
     
     private func addViews() {
@@ -91,13 +90,14 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: UITableViewDelegate {
+extension HomeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         navigateToDetail(id: games[indexPath.row].id)
     }
 }
 
-extension ViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -108,7 +108,7 @@ extension ViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: GameViewCell.cellId, for: indexPath)
         as! GameViewCell
         let game =  games[indexPath.row]
         
@@ -131,7 +131,7 @@ extension ViewController: UITableViewDataSource {
     
 }
 
-extension ViewController {
+extension HomeViewController {
     
     private func getGames() async {
         loadingView.isHidden = false
@@ -147,15 +147,14 @@ extension ViewController {
 }
 
 // Action listener
-extension ViewController {
+extension HomeViewController {
     @objc func actionAboutTap(){
-        print("DEBUG: about")
         navigateToAbout()
     }
 }
 
 // Navigation
-extension ViewController {
+extension HomeViewController {
     private func navigateToAbout(){
         navigationController?.pushViewController(AboutViewController(), animated: true)
     }

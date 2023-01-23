@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1810E2DF297EA86600980DF1 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810E2DE297EA86600980DF1 /* FavoriteViewController.swift */; };
+		1810E2E4297ED08300980DF1 /* ViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1810E2E3297ED08300980DF1 /* ViewExt.swift */; };
 		18238F9029702E060061854B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238F8F29702E060061854B /* AppDelegate.swift */; };
 		18238F9229702E060061854B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238F9129702E060061854B /* SceneDelegate.swift */; };
-		18238F9429702E060061854B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238F9329702E060061854B /* ViewController.swift */; };
+		18238F9429702E060061854B /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238F9329702E060061854B /* HomeViewController.swift */; };
 		18238FA8297048AC0061854B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18238F9829702E070061854B /* Assets.xcassets */; };
 		18238FAC297058650061854B /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238FAB297058650061854B /* AboutViewController.swift */; };
 		18238FAE297058750061854B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18238FAD297058750061854B /* DetailViewController.swift */; };
@@ -20,10 +22,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1810E2DE297EA86600980DF1 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		1810E2E3297ED08300980DF1 /* ViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExt.swift; sourceTree = "<group>"; };
 		18238F8C29702E060061854B /* GimApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GimApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18238F8F29702E060061854B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18238F9129702E060061854B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		18238F9329702E060061854B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		18238F9329702E060061854B /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		18238F9829702E070061854B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18238F9D29702E070061854B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18238FAB297058650061854B /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1810E2E0297ED05900980DF1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				1810E2E3297ED08300980DF1 /* ViewExt.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		18238F8329702E060061854B = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +76,7 @@
 		18238F8E29702E060061854B /* GimApp */ = {
 			isa = PBXGroup;
 			children = (
+				1810E2E0297ED05900980DF1 /* Utils */,
 				2696727E2978E40400A33087 /* Views */,
 				18EDD61E2978282900893959 /* NetworkSource */,
 				18EDD61C29781B7800893959 /* App */,
@@ -76,9 +89,10 @@
 		18238FA5297034A90061854B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				18238F9329702E060061854B /* ViewController.swift */,
+				18238F9329702E060061854B /* HomeViewController.swift */,
 				18238FAB297058650061854B /* AboutViewController.swift */,
 				18238FAD297058750061854B /* DetailViewController.swift */,
+				1810E2DE297EA86600980DF1 /* FavoriteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -190,8 +204,10 @@
 			files = (
 				18238FAC297058650061854B /* AboutViewController.swift in Sources */,
 				1887DA26297ACF10007BA2D9 /* LoadingIndicatorView.swift in Sources */,
-				18238F9429702E060061854B /* ViewController.swift in Sources */,
+				18238F9429702E060061854B /* HomeViewController.swift in Sources */,
 				269672802978E43400A33087 /* GameViewCell.swift in Sources */,
+				1810E2E4297ED08300980DF1 /* ViewExt.swift in Sources */,
+				1810E2DF297EA86600980DF1 /* FavoriteViewController.swift in Sources */,
 				18238F9029702E060061854B /* AppDelegate.swift in Sources */,
 				18238F9229702E060061854B /* SceneDelegate.swift in Sources */,
 				18EDD6202978284400893959 /* NetworkService.swift in Sources */,

@@ -80,10 +80,17 @@ struct GameResponse: Codable{
         backgroundImage = try container.decode(String.self, forKey: .backgroundImage)
         
         let dateString = try container.decode(String.self, forKey: .released)
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: dateString)!
-        released = dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        let dateGet = dateFormatterGet.date(from: dateString)!
+        let date = dateFormatter.string(from: dateGet)
+        
+        released = date
     }
 }
 
@@ -114,10 +121,17 @@ struct GameDetailResponse: Codable{
         backgroundImage = try container.decode(String.self, forKey: .backgroundImage)
         
         let dateString = try container.decode(String.self, forKey: .released)
+        
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: dateString)!
-        released = dateFormatter.string(from: date)
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        
+        let dateGet = dateFormatterGet.date(from: dateString)!
+        let date = dateFormatter.string(from: dateGet)
+        
+        released = date
     }
     
 }
