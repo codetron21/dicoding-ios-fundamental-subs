@@ -18,6 +18,8 @@
 		1887DA26297ACF10007BA2D9 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1887DA25297ACF10007BA2D9 /* LoadingIndicatorView.swift */; };
 		18EDD6202978284400893959 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD61F2978284400893959 /* NetworkService.swift */; };
 		18EDD6222978286000893959 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD6212978286000893959 /* GameModel.swift */; };
+		18F59A39298017B400F0750C /* GameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F59A38298017B400F0750C /* GameProvider.swift */; };
+		18F59A3C2980180100F0750C /* Game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18F59A3A2980180100F0750C /* Game.xcdatamodeld */; };
 		269672802978E43400A33087 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696727F2978E43400A33087 /* GameViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,8 @@
 		1887DA25297ACF10007BA2D9 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		18EDD61F2978284400893959 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		18EDD6212978286000893959 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		18F59A38298017B400F0750C /* GameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProvider.swift; sourceTree = "<group>"; };
+		18F59A3B2980180100F0750C /* Game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Game.xcdatamodel; sourceTree = "<group>"; };
 		2696727F2978E43400A33087 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +80,7 @@
 		18238F8E29702E060061854B /* GimApp */ = {
 			isa = PBXGroup;
 			children = (
+				18F59A372980179600F0750C /* Model */,
 				1810E2E0297ED05900980DF1 /* Utils */,
 				2696727E2978E40400A33087 /* Views */,
 				18EDD61E2978282900893959 /* NetworkSource */,
@@ -119,9 +124,18 @@
 			isa = PBXGroup;
 			children = (
 				18EDD61F2978284400893959 /* NetworkService.swift */,
-				18EDD6212978286000893959 /* GameModel.swift */,
 			);
 			path = NetworkSource;
+			sourceTree = "<group>";
+		};
+		18F59A372980179600F0750C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				18EDD6212978286000893959 /* GameModel.swift */,
+				18F59A38298017B400F0750C /* GameProvider.swift */,
+				18F59A3A2980180100F0750C /* Game.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2696727E2978E40400A33087 /* Views */ = {
@@ -204,6 +218,7 @@
 			files = (
 				18238FAC297058650061854B /* AboutViewController.swift in Sources */,
 				1887DA26297ACF10007BA2D9 /* LoadingIndicatorView.swift in Sources */,
+				18F59A39298017B400F0750C /* GameProvider.swift in Sources */,
 				18238F9429702E060061854B /* HomeViewController.swift in Sources */,
 				269672802978E43400A33087 /* GameViewCell.swift in Sources */,
 				1810E2E4297ED08300980DF1 /* ViewExt.swift in Sources */,
@@ -212,6 +227,7 @@
 				18238F9229702E060061854B /* SceneDelegate.swift in Sources */,
 				18EDD6202978284400893959 /* NetworkService.swift in Sources */,
 				18EDD6222978286000893959 /* GameModel.swift in Sources */,
+				18F59A3C2980180100F0750C /* Game.xcdatamodeld in Sources */,
 				18238FAE297058750061854B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -407,6 +423,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18F59A3A2980180100F0750C /* Game.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18F59A3B2980180100F0750C /* Game.xcdatamodel */,
+			);
+			currentVersion = 18F59A3B2980180100F0750C /* Game.xcdatamodel */;
+			path = Game.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 18238F8429702E060061854B /* Project object */;
 }

@@ -11,6 +11,8 @@ class DetailViewController: UIViewController {
     
     var gameId: Int? = nil
     
+    private var isFavorite = false
+    
     private let posterImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -108,6 +110,16 @@ class DetailViewController: UIViewController {
         view.backgroundColor = UIColor(named: "BlackColor")
 
         navigationItem.title = "Detail Gim"
+        
+    }
+    
+    private func makeFavoriteItem(isFavorite: Bool) -> UIBarButtonItem{
+        let itemFav = UIBarButtonItem()
+        itemFav.image = UIImage(systemName: "person.circle")
+        itemFav.target = self
+        itemFav.style = .plain
+        itemFav.action = #selector(toggleFavorite)
+        return itemFav
     }
     
     private func applyConstraint() {
@@ -181,6 +193,12 @@ class DetailViewController: UIViewController {
         descriptionLabel.text = game.description.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression, range: nil)
     }
     
+}
+
+extension DetailViewController {
+    @objc func toggleFavorite(){
+        
+    }
 }
 
 extension DetailViewController {
