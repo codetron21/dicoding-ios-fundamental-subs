@@ -48,7 +48,14 @@ class HomeViewController: UIViewController {
         let itemAbout = UIBarButtonItem()
         itemAbout.image = UIImage(systemName: "person.circle")
         itemAbout.target = self
+        itemAbout.style = .plain
         itemAbout.action = #selector(actionAboutTap)
+        
+        let itemFavorite = UIBarButtonItem()
+        itemFavorite.image = UIImage(systemName: "heart.circle")
+        itemFavorite.target = self
+        itemFavorite.style = .plain
+        itemFavorite.action = #selector(actionFavoriteTap)
         
         navigationItem.title = "Gim App"
         navigationController?.navigationBar.titleTextAttributes = [
@@ -57,6 +64,7 @@ class HomeViewController: UIViewController {
         ]
         
         navigationItem.rightBarButtonItem = itemAbout
+        navigationItem.leftBarButtonItem = itemFavorite
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -148,6 +156,11 @@ extension HomeViewController {
 
 // Action listener
 extension HomeViewController {
+    
+    @objc func actionFavoriteTap(){
+        navigateToFavorite()
+    }
+    
     @objc func actionAboutTap(){
         navigateToAbout()
     }
@@ -155,6 +168,11 @@ extension HomeViewController {
 
 // Navigation
 extension HomeViewController {
+    
+    private func navigateToFavorite(){
+        navigationController?.pushViewController(FavoriteViewController(), animated: true)
+    }
+    
     private func navigateToAbout(){
         navigationController?.pushViewController(AboutViewController(), animated: true)
     }
