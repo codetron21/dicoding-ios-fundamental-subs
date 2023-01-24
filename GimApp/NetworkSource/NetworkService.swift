@@ -37,16 +37,7 @@ class NetworkService {
             URLQueryItem(name: "page_size", value: pageSize)
         ]
         
-        let request = URLRequest(url: components.url!)
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-            fatalError("Error: Can't fetching data.")
-        }
-        
-        let decoder = JSONDecoder()
-        let result = try decoder.decode(GameResponses.self, from: data)
+        let result = try await requestHandler(url: components.url!, mapper: GameResponses.self)
         
         return gameMapper(input: result.results)
     }
@@ -59,16 +50,7 @@ class NetworkService {
             URLQueryItem(name: "key", value: apiKey),
         ]
         
-        let request = URLRequest(url: components.url!)
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
-            fatalError("Error: Can't fetching data.")
-        }
-        
-        let decoder = JSONDecoder()
-        let result = try decoder.decode(GameDetailResponse.self, from: data)
+        let result = try await requestHandler(url: components.url!, mapper: GameDetailResponse.self)
         
         return gameMapper(input: result)
     }
@@ -85,7 +67,7 @@ class NetworkService {
 
 extension NetworkService {
     
-    private func requestHandler<T>(url:URL, mapper:Decodable.Type) async throws->T? {
+    private func requestHandler<T>(url:URL, mapper: T.Type) async throws->T where T:Decodable {
         let request = URLRequest(url: url)
         
         let (data, response) = try await URLSession.shared.data(for: request)
@@ -97,7 +79,7 @@ extension NetworkService {
         let decoder = JSONDecoder()
         let result = try decoder.decode(mapper, from: data)
         
-        return result as? T
+        return result
     }
     
 }
