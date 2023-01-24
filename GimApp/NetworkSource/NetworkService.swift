@@ -85,6 +85,25 @@ class NetworkService {
 
 extension NetworkService {
     
+    private func requestHandler<T>(url:URL, mapper:Decodable.Type) async throws->T? {
+        let request = URLRequest(url: url)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+            fatalError("Error: Can't fetching data.")
+        }
+        
+        let decoder = JSONDecoder()
+        let result = try decoder.decode(mapper, from: data)
+        
+        return result as? T
+    }
+    
+}
+
+extension NetworkService {
+    
     private func gameMapper(
         input: [GameResponse]
     ) -> [Game]{
