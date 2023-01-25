@@ -39,7 +39,7 @@ class NetworkService {
         
         let result = try await requestHandler(url: components.url!, mapper: GameResponses.self)
         
-        return gameMapper(input: result.results)
+        return GameMapper.map(input: result.results)
     }
     
     func getDetailGame(_ id:Int) async throws -> GameDetail{
@@ -52,7 +52,7 @@ class NetworkService {
         
         let result = try await requestHandler(url: components.url!, mapper: GameDetailResponse.self)
         
-        return gameMapper(input: result)
+        return GameMapper.map(input: result)
     }
     
     func dowloadImage(url: URL, completion: @escaping (UIImage?) -> Void)  {
@@ -84,25 +84,4 @@ extension NetworkService {
     
 }
 
-extension NetworkService {
-    
-    private func gameMapper(
-        input: [GameResponse]
-    ) -> [Game]{
-        return input.map{ result in
-            return Game(
-                id: result.id, name: result.name, rating: result.rating, released: result.released,
-                bacgroundImage: result.backgroundImage
-            )
-        }
-    }
-    
-    private func gameMapper(
-        input: GameDetailResponse
-    ) -> GameDetail{
-        return GameDetail(
-            id: input.id, name: input.name, rating: input.rating, released: input.released,backgroundImage: input.backgroundImage, description: input.description
-        )
-    }
-    
-}
+

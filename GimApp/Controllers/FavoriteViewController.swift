@@ -49,6 +49,7 @@ class FavoriteViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        loadGames()
     }
 
     private func setupView(){
@@ -64,6 +65,13 @@ class FavoriteViewController: UIViewController {
     private func applyConstraint(){
         let safeGuide = view.safeAreaLayoutGuide
         
+        let collectionConstraint = [
+            tableView.topAnchor.constraint(equalTo: safeGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: safeGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: safeGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: safeGuide.bottomAnchor)
+        ]
+        
         let loadingConstraint = [
             loadingView.heightAnchor.constraint(equalToConstant: 50),
             loadingView.widthAnchor.constraint(equalToConstant: 50),
@@ -76,6 +84,7 @@ class FavoriteViewController: UIViewController {
             emptyLabel.centerYAnchor.constraint(equalTo: safeGuide.centerYAnchor)
         ]
         
+        NSLayoutConstraint.activate(collectionConstraint)
         NSLayoutConstraint.activate(loadingConstraint)
         NSLayoutConstraint.activate(emptyConstraint)
     }
@@ -84,6 +93,10 @@ class FavoriteViewController: UIViewController {
         view.addSubview(tableView)
         view.addSubview(loadingView)
         view.addSubview(emptyLabel)
+    }
+    
+    private func configureView(_ isEmpty: Bool){
+        emptyLabel.isHidden = !isEmpty
     }
     
 }
@@ -111,6 +124,13 @@ extension FavoriteViewController: UITableViewDataSource {
         let game =  games[indexPath.row]
         
         cell.game = game
+        if cell.game?.image == nil {
+            NetworkService.shared.dowloadImage(url: game.backgroundImage){image in
+                DispatchQueue.main.async {
+                    cell.game?.image = image
+                }
+            }
+        }
         
         return cell
     }
@@ -129,4 +149,22 @@ extension FavoriteViewController {
         vc.gameId = id
         navigationController?.pushViewController(vc, animated: true)
     }
+}
+
+extension FavoriteViewController {
+    
+    private func loadGames(){
+        loadingView.isHidden = false
+        defer{ loadingView.isHidden = true }
+        
+        GameProvider.shared.getAllGame{ games in
+            DispatchQueue.main.async {
+                print("DEBUG: \(games)")
+                self.games = games
+                self.configureView(games.isEmpty)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }

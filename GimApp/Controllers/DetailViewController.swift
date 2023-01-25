@@ -13,6 +13,8 @@ class DetailViewController: UIViewController {
     
     private var isFavorite = false
     
+    private var game:GameDetail? = nil
+    
     private let posterImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
@@ -89,7 +91,7 @@ class DetailViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        guard let id = gameId else {return}
+        guard let id = gameId else { return }
         Task { await getDetailGame(id) }
     }
     
@@ -108,18 +110,26 @@ class DetailViewController: UIViewController {
     
     private func setupView(){
         view.backgroundColor = UIColor(named: "BlackColor")
-
+        
         navigationItem.title = "Detail Gim"
         
     }
     
-    private func makeFavoriteItem(isFavorite: Bool) -> UIBarButtonItem{
+    private func configureFavoriteItem(isFavorite: Bool) {
         let itemFav = UIBarButtonItem()
-        itemFav.image = UIImage(systemName: "person.circle")
         itemFav.target = self
         itemFav.style = .plain
         itemFav.action = #selector(toggleFavorite)
-        return itemFav
+        navigationItem.rightBarButtonItem = itemFav
+        changeFavoriteIcon(isFavorite: isFavorite)
+    }
+    
+    private func changeFavoriteIcon(isFavorite: Bool){
+        if isFavorite {
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart.fill")
+        } else{
+            navigationItem.rightBarButtonItem?.image = UIImage(systemName: "heart")
+        }
     }
     
     private func applyConstraint() {
@@ -186,6 +196,7 @@ class DetailViewController: UIViewController {
     }
     
     private func configureView(game:GameDetail){
+        self.game = game
         posterImage.image = game.image
         releasedLabel.text = game.released
         titleLabel.text = game.name
@@ -197,8 +208,39 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController {
     @objc func toggleFavorite(){
+        print("DEBUG: toggle favorite")
         
+        guard let game = self.game else {return}
+        
+        self.isFavorite = !self.isFavorite
+        
+        if(isFavorite){
+            GameProvider.shared.saveGame(id: game.id, name: game.name, released: game.released, rating: game.rating,backgroundImage: game.backgroundImage){
+                DispatchQueue.main.async {
+                    self.changeFavoriteIcon(isFavorite: self.isFavorite)
+                }
+            }
+        } else{
+            GameProvider.shared.deleteGame(id: game.id){
+                DispatchQueue.main.async {
+                    self.changeFavoriteIcon(isFavorite: self.isFavorite)
+                }
+            }
+        }
     }
+}
+
+extension DetailViewController {
+    
+    func checkIsGameFavorited(id: Int){
+        GameProvider.shared.isGameFavorited(id: id){ isFavorite in
+            DispatchQueue.main.async {
+                self.isFavorite = isFavorite
+                self.configureFavoriteItem(isFavorite: isFavorite)
+            }
+        }
+    }
+    
 }
 
 extension DetailViewController {
@@ -209,10 +251,11 @@ extension DetailViewController {
         let service = NetworkService.shared
         do {
             var result = try await service.getDetailGame(id)
-            service.dowloadImage(url: result.bacgroundImage){image in
+            service.dowloadImage(url: result.backgroundImage){image in
                 DispatchQueue.main.async {
                     result.image = image
                     self.configureView(game: result)
+                    self.checkIsGameFavorited(id: result.id)
                 }
             }
         } catch {

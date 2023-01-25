@@ -123,7 +123,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.game = game
         
         if cell.game?.image == nil {
-            service.dowloadImage(url: game.bacgroundImage){image in
+            service.dowloadImage(url: game.backgroundImage){image in
                 DispatchQueue.main.async {
                     cell.game?.image = image
                 }

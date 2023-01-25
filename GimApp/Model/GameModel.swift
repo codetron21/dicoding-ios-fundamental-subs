@@ -9,29 +9,29 @@ import UIKit
 
 // Domain
 struct Game{
-    let id:Int
-    let name:String
-    let rating:Float
-    let released:String
-    let bacgroundImage: URL
+    let id: Int
+    let name: String
+    let rating: Float
+    let released: String
+    let backgroundImage: URL
     
     var image:UIImage? = nil
     
-    init(id:Int, name: String, rating: Float, released: String,bacgroundImage: String) {
+    init(id:Int, name: String, rating: Float, released: String, backgroundImage: String) {
         self.id = id
         self.name = name
         self.rating = rating
         self.released = released
-        self.bacgroundImage =  URL(string:bacgroundImage)!
+        self.backgroundImage =  URL(string:backgroundImage)!
     }
 }
 
 struct GameDetail {
-    let id:Int
-    let name:String
-    let rating:Float
-    let released:String
-    let bacgroundImage: URL
+    let id: Int
+    let name: String
+    let rating: Float
+    let released: String
+    let backgroundImage: URL
     let description: String
     
     var image:UIImage? = nil
@@ -41,7 +41,7 @@ struct GameDetail {
         self.name = name
         self.rating = rating
         self.released = released
-        self.bacgroundImage = URL(string: backgroundImage)!
+        self.backgroundImage = URL(string: backgroundImage)!
         self.description = description
     }
 }
@@ -57,11 +57,11 @@ struct GameResponses: Codable {
 }
 
 struct GameResponse: Codable{
-    let id:Int
-    let name:String
-    let rating:Float
-    let released:String
-    let backgroundImage:String
+    let id: Int
+    let name: String
+    let rating: Float
+    let released: String
+    let backgroundImage: String
     
     enum CodingKeys: String, CodingKey{
         case id
@@ -95,12 +95,12 @@ struct GameResponse: Codable{
 }
 
 struct GameDetailResponse: Codable{
-    let id:Int
-    let name:String
-    let rating:Float
-    let released:String
-    let backgroundImage:String
-    let description:String
+    let id: Int
+    let name: String
+    let rating: Float
+    let released: String
+    let backgroundImage: String
+    let description: String
     
     enum CodingKeys: String, CodingKey{
         case id
@@ -132,6 +132,29 @@ struct GameDetailResponse: Codable{
         let date = dateFormatter.string(from: dateGet)
         
         released = date
+    }
+    
+}
+
+class GameMapper {
+
+    public static func map(
+        input: [GameResponse]
+    ) -> [Game]{
+        return input.map{ result in
+            return Game(
+                id: result.id, name: result.name, rating: result.rating, released: result.released,
+                backgroundImage: result.backgroundImage
+            )
+        }
+    }
+    
+    public static func map(
+        input: GameDetailResponse
+    ) -> GameDetail{
+        return GameDetail(
+            id: input.id, name: input.name, rating: input.rating, released: input.released,backgroundImage: input.backgroundImage, description: input.description
+        )
     }
     
 }

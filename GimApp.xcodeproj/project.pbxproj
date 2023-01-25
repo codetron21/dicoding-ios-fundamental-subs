@@ -19,7 +19,7 @@
 		18EDD6202978284400893959 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD61F2978284400893959 /* NetworkService.swift */; };
 		18EDD6222978286000893959 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18EDD6212978286000893959 /* GameModel.swift */; };
 		18F59A39298017B400F0750C /* GameProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F59A38298017B400F0750C /* GameProvider.swift */; };
-		18F59A3C2980180100F0750C /* Game.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18F59A3A2980180100F0750C /* Game.xcdatamodeld */; };
+		260165A22980D443008AE8D1 /* GameData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 260165A02980D443008AE8D1 /* GameData.xcdatamodeld */; };
 		269672802978E43400A33087 /* GameViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2696727F2978E43400A33087 /* GameViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,7 +38,7 @@
 		18EDD61F2978284400893959 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		18EDD6212978286000893959 /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		18F59A38298017B400F0750C /* GameProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameProvider.swift; sourceTree = "<group>"; };
-		18F59A3B2980180100F0750C /* Game.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Game.xcdatamodel; sourceTree = "<group>"; };
+		260165A12980D443008AE8D1 /* GameData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameData.xcdatamodel; sourceTree = "<group>"; };
 		2696727F2978E43400A33087 /* GameViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,7 +133,7 @@
 			children = (
 				18EDD6212978286000893959 /* GameModel.swift */,
 				18F59A38298017B400F0750C /* GameProvider.swift */,
-				18F59A3A2980180100F0750C /* Game.xcdatamodeld */,
+				260165A02980D443008AE8D1 /* GameData.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -226,8 +226,8 @@
 				18238F9029702E060061854B /* AppDelegate.swift in Sources */,
 				18238F9229702E060061854B /* SceneDelegate.swift in Sources */,
 				18EDD6202978284400893959 /* NetworkService.swift in Sources */,
+				260165A22980D443008AE8D1 /* GameData.xcdatamodeld in Sources */,
 				18EDD6222978286000893959 /* GameModel.swift in Sources */,
-				18F59A3C2980180100F0750C /* Game.xcdatamodeld in Sources */,
 				18238FAE297058750061854B /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,13 +425,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		18F59A3A2980180100F0750C /* Game.xcdatamodeld */ = {
+		260165A02980D443008AE8D1 /* GameData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				18F59A3B2980180100F0750C /* Game.xcdatamodel */,
+				260165A12980D443008AE8D1 /* GameData.xcdatamodel */,
 			);
-			currentVersion = 18F59A3B2980180100F0750C /* Game.xcdatamodel */;
-			path = Game.xcdatamodeld;
+			currentVersion = 260165A12980D443008AE8D1 /* GameData.xcdatamodel */;
+			path = GameData.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
